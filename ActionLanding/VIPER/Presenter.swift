@@ -6,17 +6,21 @@
 //
 
 
-protocol PresenterProtocol {
+protocol PresenterProtocol: AnyObject {
     
 }
 
-
-class Presenter: RootPresenter {
+class Presenter: RootPresenter, PresenterProtocol {
     
     var router: RouterProtocol
+    var interactor: InteractorOutputProtocol
     
-    init(router: RouterProtocol) {
+    init(router: RouterProtocol, interactor: InteractorOutputProtocol) {
         self.router = router
+        self.interactor = interactor
+        super.init()
+        
+        self.interactor.presenter = self
     }
     
     override func loadData() {
@@ -24,6 +28,3 @@ class Presenter: RootPresenter {
     }
 }
 
-extension Presenter: PresenterProtocol {
-    
-}

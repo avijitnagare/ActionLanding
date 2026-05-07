@@ -8,15 +8,13 @@
 
 import Foundation
 
-class Router: RootRouter {
-    
-}
-
 
 protocol RouterProtocol {
     
 }
 
-extension Router: RouterProtocol {
+class Router: RootRouter, RouterProtocol {
     
 }
+
+

@@ -21,11 +21,3 @@ open class RootInteractor: RootInteractorProtocol {
     }
     
 }
-
-// MARK: - Interactor to Presenter
-
-protocol RootInteractorOutputProtocol: AnyObject {
-    func showLoading()
-    func hideLoading()
-    func showError(_ error: NSError)
-}

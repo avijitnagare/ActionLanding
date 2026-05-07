@@ -7,6 +7,18 @@
 
 import Foundation
 
-final class Interactor: RootInteractor {
+
+// MARK: - Interactor to Presenter
+
+protocol InteractorOutputProtocol: AnyObject {
+    var presenter: PresenterProtocol? { get set }
+}
+
+
+final class Interactor: RootInteractor, InteractorOutputProtocol {
+    
+    weak var presenter: PresenterProtocol?
+    
     
 }
+

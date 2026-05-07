@@ -11,7 +11,7 @@ import SwiftUI
 struct ActionLandingApp: App {
     var body: some Scene {
         WindowGroup {
-            ActionView(presenter: Presenter(router: Router()))
+            ActionView(presenter: Presenter(router: Router(), interactor: Interactor()))
         }
     }
 }
