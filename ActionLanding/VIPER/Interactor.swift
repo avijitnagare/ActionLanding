@@ -10,13 +10,12 @@ import Foundation
 
 // MARK: - Interactor to Presenter
 
-protocol InteractorOutputProtocol: AnyObject {
+protocol InteractorProtocol: AnyObject {
     var presenter: PresenterProtocol? { get set }
 }
 
 
-final class Interactor: RootInteractor, InteractorOutputProtocol {
-    
+final class Interactor: RootInteractor, InteractorProtocol {
     weak var presenter: PresenterProtocol?
     
     

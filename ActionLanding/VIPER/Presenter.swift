@@ -13,9 +13,9 @@ protocol PresenterProtocol: AnyObject {
 class Presenter: RootPresenter, PresenterProtocol {
     
     var router: RouterProtocol
-    var interactor: InteractorOutputProtocol
+    var interactor: InteractorProtocol
     
-    init(router: RouterProtocol, interactor: InteractorOutputProtocol) {
+    init(router: RouterProtocol, interactor: InteractorProtocol) {
         self.router = router
         self.interactor = interactor
         super.init()
