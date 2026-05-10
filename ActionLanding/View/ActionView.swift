@@ -27,6 +27,13 @@ struct ActionView: View {
             }
 
         }
+        .alert(item: $presenter.alert) { alert in
+            return Alert(title: Text(alert.title),
+                         message: Text(alert.message),
+                         dismissButton: .default(Text("OK")) {
+                presenter.alert = nil
+            })
+        }
         .onAppear {
             print("ActionView appeared")
         }

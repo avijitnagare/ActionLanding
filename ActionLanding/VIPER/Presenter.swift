@@ -8,10 +8,11 @@ import Combine
 
 protocol PresenterProtocol: AnyObject {
     var userNameText: String { get set }
+    var alert: AlertModel? { get set }
 }
 
 class Presenter: RootPresenter, PresenterProtocol, ObservableObject {
-  
+    @Published var alert: AlertModel?
     @Published var userNameText = ""
     
     
@@ -37,6 +38,7 @@ class Presenter: RootPresenter, PresenterProtocol, ObservableObject {
         Task {
             let result = await interactor.sendUserName(name: userNameText)
             print("Result from interactor: \(result)")
+            alert = AlertModel(title: "Alert!!", message: result)
         }
     }
 }
