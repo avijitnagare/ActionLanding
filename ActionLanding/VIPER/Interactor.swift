@@ -12,10 +12,16 @@ import Foundation
 
 protocol InteractorProtocol: AnyObject {
     var presenter: PresenterProtocol? { get set }
+    func sendUserName(name: String) async -> String
 }
 
 
 final class Interactor: RootInteractor, InteractorProtocol {
+   
+    func sendUserName(name: String) async -> String {
+        return "Successfully created!!"
+    }
+    
     weak var presenter: PresenterProtocol?
     
     

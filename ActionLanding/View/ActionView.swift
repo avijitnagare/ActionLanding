@@ -5,18 +5,30 @@
 //  Created by Avijit Nagare on 2026-05-05.
 //
 import SwiftUI
+import Combine
 
 struct ActionView: View {
     
-    var presenter: PresenterProtocol
+    @ObservedObject var presenter: Presenter
    
-    init(presenter: PresenterProtocol) {
+    init(presenter: Presenter) {
         self.presenter = presenter
     }
     
     var body: some View {
-        Text("Hello, World! Action Landing!!")
+        VStack(spacing: 16) {
+            TextField("Username", text: $presenter.userNameText)
+                .textFieldStyle(.roundedBorder)
+                .border(Color.red)
+            Button {
+                presenter.onSubmitClick()
+            } label: {
+                Text("Submit")
+            }
+
+        }
+        .onAppear {
+            print("ActionView appeared")
+        }
     }
 }
-
-

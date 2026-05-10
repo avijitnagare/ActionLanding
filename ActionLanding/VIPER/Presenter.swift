@@ -4,16 +4,20 @@
 //
 //  Created by Avijit Nagare on 2026-05-05.
 //
-
+import Combine
 
 protocol PresenterProtocol: AnyObject {
-    
+    var userNameText: String { get set }
 }
 
-class Presenter: RootPresenter, PresenterProtocol {
+class Presenter: RootPresenter, PresenterProtocol, ObservableObject {
+  
+    @Published var userNameText = ""
+    
     
     var router: RouterProtocol
     var interactor: InteractorProtocol
+    
     
     init(router: RouterProtocol, interactor: InteractorProtocol) {
         self.router = router
@@ -25,6 +29,15 @@ class Presenter: RootPresenter, PresenterProtocol {
     
     override func loadData() {
         
+    }
+    
+    @MainActor
+    func onSubmitClick() {
+        print("Final values from text fields: \(self.userNameText)")
+        Task {
+            let result = await interactor.sendUserName(name: userNameText)
+            print("Result from interactor: \(result)")
+        }
     }
 }
 

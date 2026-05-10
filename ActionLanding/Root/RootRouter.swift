@@ -21,23 +21,21 @@ open class RootRouter: NSObject, RootRouterProtocol  {
     public var shouldShowCloseButton: Bool = false
     public var onBackTapped: ((Bool)->Void)?
     
-    
-    //DeeplinkService
-    
-    var rootController: UINavigationController?
+    public var rootController: UINavigationController?
     
     required public override init() {
         super.init()
         self.onBackTapped = { [weak self] _ in
             print("Back button tapped callback at RootRouter called!!")
-            //self?.popComponent(animated: animated)
         }
     }
     
-    
     func push(_ component: UIViewController?) {
-        push(component)
+        guard let vc = component else { return }
+        if let nav = rootController {
+            nav.pushViewController(vc, animated: true)
+        } else {
+            print("RootRouter: rootController is nil, cannot push \(vc)")
+        }
     }
-
-    
 }
